@@ -22,7 +22,7 @@ export default function LoginPage() {
 
     try {
       const { data } = await api.post("/auth/login", formData);
-      login(data.token, data.user);
+      login(data.user, data.token);
       router.push("/dashboard");
     } catch (err: any) {
       setError(err.response?.data?.message || "Login failed. Please try again.");

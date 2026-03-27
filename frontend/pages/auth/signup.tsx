@@ -11,7 +11,7 @@ export default function SignupPage() {
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
 
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({ orgName: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,7 +22,7 @@ export default function SignupPage() {
 
     try {
       const { data } = await api.post("/auth/register", formData);
-      login(data.token, data.user);
+      login(data.user, data.token);
       router.push("/dashboard");
     } catch (err: any) {
       setError(err.response?.data?.message || "Signup failed. Please try again.");
@@ -59,13 +59,13 @@ export default function SignupPage() {
             )}
 
             <InputField
-              label="Full Name"
-              name="name"
+              label="Organization Name"
+              name="orgName"
               type="text"
               required
-              value={formData.name}
+              value={formData.orgName}
               onChange={handleChange}
-              placeholder="John Doe"
+              placeholder="Acme Inc."
             />
 
             <InputField
