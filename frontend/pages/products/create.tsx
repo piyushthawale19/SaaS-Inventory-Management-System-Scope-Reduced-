@@ -43,21 +43,23 @@ export default function CreateProduct() {
 
   return (
     <Layout>
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Add Product</h1>
-        <p className="mt-1 text-sm text-gray-500">
+      <div className="mb-10">
+        <h1 className="text-2xl font-bold text-[#191c1d]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+          Add Product
+        </h1>
+        <p className="mt-1 text-sm text-[#434655]">
           Create a new inventory item.
         </p>
       </div>
 
       <Card className="max-w-2xl">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           {error && (
-            <div className="bg-red-50 text-red-700 p-3 rounded-md text-sm">
+            <div className="bg-[#ffdad6] text-[#93000a] p-3 rounded-md text-sm">
               {error}
             </div>
           )}
-          
+
           <InputField
             label="Product Name"
             name="name"
@@ -66,7 +68,7 @@ export default function CreateProduct() {
             onChange={handleChange}
             placeholder="Wireless Mouse"
           />
-          
+
           <InputField
             label="SKU"
             name="sku"
@@ -75,7 +77,7 @@ export default function CreateProduct() {
             onChange={handleChange}
             placeholder="WM-001"
           />
-          
+
           <div className="grid grid-cols-2 gap-4">
             <InputField
               label="Quantity"
@@ -86,7 +88,7 @@ export default function CreateProduct() {
               value={formData.quantity}
               onChange={handleChange}
             />
-            
+
             <InputField
               label="Price ($)"
               name="price"
@@ -98,11 +100,11 @@ export default function CreateProduct() {
               onChange={handleChange}
             />
           </div>
-          
-          <div className="flex justify-end gap-4 mt-6">
-            <Button 
-              type="button" 
-              variant="secondary" 
+
+          <div className="flex justify-end gap-3 pt-4">
+            <Button
+              type="button"
+              variant="secondary"
               onClick={() => router.push("/products")}
             >
               Cancel

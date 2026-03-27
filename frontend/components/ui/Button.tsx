@@ -5,26 +5,26 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
 }
 
-export function Button({ 
-  children, 
-  variant = "primary", 
-  fullWidth = false, 
-  className = "", 
-  ...props 
+export function Button({
+  children,
+  variant = "primary",
+  fullWidth = false,
+  className = "",
+  ...props
 }: ButtonProps) {
-  const baseStyle = "flex justify-center py-2 px-4 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors";
-  
+  const base = "inline-flex items-center justify-center py-2.5 px-4 text-sm font-semibold rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1";
+
   const variants = {
-    primary: "border-transparent text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500",
-    secondary: "border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-blue-500",
-    danger: "border-transparent text-white bg-red-600 hover:bg-red-700 focus:ring-red-500",
-    ghost: "border-transparent text-gray-700 bg-transparent hover:bg-gray-100 shadow-none focus:ring-gray-500"
+    primary: "text-white bg-gradient-to-br from-[#004ac6] to-[#2563eb] hover:from-[#003ea8] hover:to-[#004ac6] focus:ring-[#b4c5ff]",
+    secondary: "text-[#191c1d] bg-[#e7e8e9] hover:bg-[#d9dadb] focus:ring-[#c3c6d7]",
+    danger: "text-white bg-[#ba1a1a] hover:bg-[#93000a] focus:ring-[#ffdad6]",
+    ghost: "text-[#004ac6] bg-transparent hover:bg-[#f3f4f5] focus:ring-[#dbe1ff] shadow-none"
   };
 
   const width = fullWidth ? "w-full" : "";
 
   return (
-    <button className={`${baseStyle} ${variants[variant]} ${width} ${className}`} {...props}>
+    <button className={`${base} ${variants[variant]} ${width} ${className}`} {...props}>
       {children}
     </button>
   );

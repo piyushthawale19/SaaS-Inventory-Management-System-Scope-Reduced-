@@ -14,12 +14,12 @@ interface TableProps<T> {
 
 export function Table<T>({ data, columns, keyExtractor }: TableProps<T>) {
   return (
-    <div className="overflow-x-auto border border-gray-200 shadow-sm rounded-lg relative overflow-hidden">
-      <table className="w-full text-sm text-left text-gray-500">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b">
-          <tr>
+    <div className="overflow-x-auto rounded-lg">
+      <table className="w-full text-sm text-left">
+        <thead>
+          <tr className="bg-[#f3f4f5]">
             {columns.map((col, index) => (
-              <th key={index} scope="col" className={`px-6 py-3 ${col.className || ""}`}>
+              <th key={index} scope="col" className={`px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#434655] ${col.className || ""}`}>
                 {col.header}
               </th>
             ))}
@@ -28,15 +28,15 @@ export function Table<T>({ data, columns, keyExtractor }: TableProps<T>) {
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td colSpan={columns.length} className="px-6 py-4 text-center text-gray-500">
+              <td colSpan={columns.length} className="px-6 py-8 text-center text-sm text-[#737686]">
                 No data available
               </td>
             </tr>
           ) : (
             data.map((row) => (
-              <tr key={keyExtractor(row)} className="bg-white border-b hover:bg-gray-50">
+              <tr key={keyExtractor(row)} className="bg-white hover:bg-[#f8f9fa] transition-colors">
                 {columns.map((col, colIndex) => (
-                  <td key={colIndex} className={`px-6 py-4 ${col.className || ""}`}>
+                  <td key={colIndex} className={`px-6 py-4 text-[#191c1d] ${col.className || ""}`}>
                     {typeof col.accessor === "function" ? col.accessor(row) : (row[col.accessor] as React.ReactNode)}
                   </td>
                 ))}

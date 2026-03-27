@@ -11,21 +11,28 @@ export function Navbar() {
     router.push("/auth/login");
   };
 
+  const pageTitle = (() => {
+    if (router.pathname.startsWith("/dashboard")) return "Dashboard";
+    if (router.pathname.startsWith("/products")) return "Products";
+    if (router.pathname.startsWith("/settings")) return "Settings";
+    return "";
+  })();
+
   return (
-    <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-6">
-      <div className="flex-1">
-        {/* Placeholder for real bredcrumbs or page title mapping */}
-      </div>
+    <header className="bg-white h-14 flex items-center justify-between px-6" style={{ borderBottom: '1px solid rgba(195,198,215,0.15)' }}>
+      <h2 className="text-sm font-semibold text-[#191c1d] uppercase tracking-wider" style={{ fontFamily: 'Inter, sans-serif' }}>
+        {pageTitle}
+      </h2>
 
       <div className="flex items-center gap-4">
         {user && (
-          <span className="text-sm font-medium text-gray-700">
+          <span className="text-xs font-medium text-[#434655]">
             {user.email}
           </span>
         )}
         <button
           onClick={handleLogout}
-          className="text-sm font-medium text-gray-600 hover:text-red-600 transition-colors"
+          className="text-xs font-medium text-[#737686] hover:text-[#ba1a1a] transition-colors"
         >
           Logout
         </button>

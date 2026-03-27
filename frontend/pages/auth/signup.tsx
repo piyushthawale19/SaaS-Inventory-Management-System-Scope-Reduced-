@@ -10,12 +10,8 @@ import api from "@/lib/axios";
 export default function SignupPage() {
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
-  
-  const [formData, setFormData] = useState({ 
-    name: "",
-    email: "", 
-    password: "" 
-  });
+
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -40,25 +36,28 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+    <div className="min-h-screen flex items-center justify-center bg-[#f8f9fa] py-12 px-4">
+      <div className="max-w-md w-full">
+        <div className="text-center mb-8">
+          <p className="text-2xl font-extrabold text-[#004ac6] mb-6" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            StockFlow
+          </p>
+          <h1 className="text-2xl font-bold text-[#191c1d]" style={{ fontFamily: 'Manrope, sans-serif' }}>
             Create an Account
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          </h1>
+          <p className="mt-1 text-sm text-[#434655]">
             Start managing your inventory efficiently today.
           </p>
         </div>
 
         <Card>
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-5" onSubmit={handleSubmit}>
             {error && (
-              <div className="bg-red-50 text-red-700 p-3 rounded-md text-sm border border-red-200">
+              <div className="bg-[#ffdad6] text-[#93000a] p-3 rounded-md text-sm">
                 {error}
               </div>
             )}
-            
+
             <InputField
               label="Full Name"
               name="name"
@@ -68,17 +67,17 @@ export default function SignupPage() {
               onChange={handleChange}
               placeholder="John Doe"
             />
-            
+
             <InputField
-              label="Email address"
+              label="Email"
               name="email"
               type="email"
               required
               value={formData.email}
               onChange={handleChange}
-              placeholder="you@example.com"
+              placeholder="name@company.com"
             />
-            
+
             <InputField
               label="Password"
               name="password"
@@ -88,15 +87,15 @@ export default function SignupPage() {
               onChange={handleChange}
               placeholder="••••••••"
             />
-            
+
             <Button type="submit" fullWidth disabled={isLoading}>
-              {isLoading ? "Signing up..." : "Sign Up"}
+              {isLoading ? "Creating account..." : "Create Account"}
             </Button>
-            
-            <p className="text-center text-sm text-gray-600 mt-4">
+
+            <p className="text-center text-sm text-[#434655] mt-4">
               Already have an account?{" "}
-              <Link href="/auth/login" className="font-medium text-blue-600 hover:text-blue-500">
-                Log in
+              <Link href="/auth/login" className="font-semibold text-[#004ac6] hover:underline">
+                Sign in
               </Link>
             </p>
           </form>

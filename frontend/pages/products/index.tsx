@@ -37,7 +37,7 @@ export default function ProductsPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
-    
+
     try {
       await api.delete(`/products/${id}`);
       setProducts(products.filter(p => p.id !== id));
@@ -51,19 +51,19 @@ export default function ProductsPage() {
     { header: "SKU", accessor: "sku" },
     { header: "Quantity", accessor: "quantity" },
     { header: "Price", accessor: (product) => `$${product.price.toFixed(2)}` },
-    { 
-      header: "Actions", 
+    {
+      header: "Actions",
       accessor: (product) => (
-        <div className="flex gap-2 text-sm">
-          <Link 
+        <div className="flex gap-3 text-sm">
+          <Link
             href={`/products/edit/${product.id}`}
-            className="text-blue-600 hover:text-blue-800"
+            className="font-medium text-[#004ac6] hover:underline"
           >
             Edit
           </Link>
-          <button 
+          <button
             onClick={() => handleDelete(product.id)}
-            className="text-red-600 hover:text-red-800"
+            className="font-medium text-[#ba1a1a] hover:underline"
           >
             Delete
           </button>
@@ -76,7 +76,7 @@ export default function ProductsPage() {
     return (
       <Layout>
         <div className="flex h-full items-center justify-center">
-          <p className="text-gray-500">Loading products...</p>
+          <p className="text-sm text-[#737686]">Loading products...</p>
         </div>
       </Layout>
     );
@@ -84,10 +84,12 @@ export default function ProductsPage() {
 
   return (
     <Layout>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center mb-10">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Products</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <h1 className="text-2xl font-bold text-[#191c1d]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            Products
+          </h1>
+          <p className="mt-1 text-sm text-[#434655]">
             Manage your inventory, prices, and stock levels.
           </p>
         </div>

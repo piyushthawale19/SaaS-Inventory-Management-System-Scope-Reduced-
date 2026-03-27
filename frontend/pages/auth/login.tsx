@@ -10,7 +10,7 @@ import api from "@/lib/axios";
 export default function LoginPage() {
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
-  
+
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -36,35 +36,38 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-            Log in to StockFlow
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Welcome back! Please enter your details.
+    <div className="min-h-screen flex items-center justify-center bg-[#f8f9fa] py-12 px-4">
+      <div className="max-w-md w-full">
+        <div className="text-center mb-8">
+          <p className="text-2xl font-extrabold text-[#004ac6] mb-6" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            StockFlow
+          </p>
+          <h1 className="text-2xl font-bold text-[#191c1d]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            Welcome back
+          </h1>
+          <p className="mt-1 text-sm text-[#434655]">
+            Enter your credentials to access your account.
           </p>
         </div>
 
         <Card>
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-5" onSubmit={handleSubmit}>
             {error && (
-              <div className="bg-red-50 text-red-700 p-3 rounded-md text-sm border border-red-200">
+              <div className="bg-[#ffdad6] text-[#93000a] p-3 rounded-md text-sm">
                 {error}
               </div>
             )}
-            
+
             <InputField
-              label="Email address"
+              label="Email"
               name="email"
               type="email"
               required
               value={formData.email}
               onChange={handleChange}
-              placeholder="you@example.com"
+              placeholder="name@company.com"
             />
-            
+
             <InputField
               label="Password"
               name="password"
@@ -74,15 +77,15 @@ export default function LoginPage() {
               onChange={handleChange}
               placeholder="••••••••"
             />
-            
+
             <Button type="submit" fullWidth disabled={isLoading}>
-              {isLoading ? "Logging in..." : "Log In"}
+              {isLoading ? "Signing in..." : "Sign In"}
             </Button>
-            
-            <p className="text-center text-sm text-gray-600 mt-4">
-              Don't have an account?{" "}
-              <Link href="/auth/signup" className="font-medium text-blue-600 hover:text-blue-500">
-                Sign up
+
+            <p className="text-center text-sm text-[#434655] mt-4">
+              Don&apos;t have an account?{" "}
+              <Link href="/auth/signup" className="font-semibold text-[#004ac6] hover:underline">
+                Create one
               </Link>
             </p>
           </form>

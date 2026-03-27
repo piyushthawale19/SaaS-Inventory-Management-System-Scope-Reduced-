@@ -9,21 +9,21 @@ import api from "@/lib/axios";
 export default function EditProduct() {
   const router = useRouter();
   const { id } = router.query;
-  
+
   const [formData, setFormData] = useState({
     name: "",
     sku: "",
     quantity: "",
     price: "",
   });
-  
+
   const [initialLoading, setInitialLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (!id) return;
-    
+
     const fetchProduct = async () => {
       try {
         const { data } = await api.get(`/products/${id}`);
@@ -39,7 +39,7 @@ export default function EditProduct() {
         setInitialLoading(false);
       }
     };
-    
+
     fetchProduct();
   }, [id]);
 
@@ -71,7 +71,7 @@ export default function EditProduct() {
     return (
       <Layout>
         <div className="flex h-full items-center justify-center">
-          <p className="text-gray-500">Loading product...</p>
+          <p className="text-sm text-[#737686]">Loading product...</p>
         </div>
       </Layout>
     );
@@ -79,21 +79,23 @@ export default function EditProduct() {
 
   return (
     <Layout>
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Edit Product</h1>
-        <p className="mt-1 text-sm text-gray-500">
+      <div className="mb-10">
+        <h1 className="text-2xl font-bold text-[#191c1d]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+          Edit Product
+        </h1>
+        <p className="mt-1 text-sm text-[#434655]">
           Update inventory details for this item.
         </p>
       </div>
 
       <Card className="max-w-2xl">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           {error && (
-            <div className="bg-red-50 text-red-700 p-3 rounded-md text-sm">
+            <div className="bg-[#ffdad6] text-[#93000a] p-3 rounded-md text-sm">
               {error}
             </div>
           )}
-          
+
           <InputField
             label="Product Name"
             name="name"
@@ -101,7 +103,7 @@ export default function EditProduct() {
             value={formData.name}
             onChange={handleChange}
           />
-          
+
           <InputField
             label="SKU"
             name="sku"
@@ -109,7 +111,7 @@ export default function EditProduct() {
             value={formData.sku}
             onChange={handleChange}
           />
-          
+
           <div className="grid grid-cols-2 gap-4">
             <InputField
               label="Quantity"
@@ -120,7 +122,7 @@ export default function EditProduct() {
               value={formData.quantity}
               onChange={handleChange}
             />
-            
+
             <InputField
               label="Price ($)"
               name="price"
@@ -132,11 +134,11 @@ export default function EditProduct() {
               onChange={handleChange}
             />
           </div>
-          
-          <div className="flex justify-end gap-4 mt-6">
-            <Button 
-              type="button" 
-              variant="secondary" 
+
+          <div className="flex justify-end gap-3 pt-4">
+            <Button
+              type="button"
+              variant="secondary"
               onClick={() => router.push("/products")}
             >
               Cancel
