@@ -10,9 +10,15 @@ app.use(cors());
 app.use(express.json());
 
 const authRoutes = require('./routes/authRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
+const productsRoutes = require('./routes/productsRoutes');
+const settingsRoutes = require('./routes/settingsRoutes');
 
-// Routes will be added here
+// Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/products', productsRoutes);
+app.use('/api/settings', settingsRoutes);
 app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
 
 app.use((err, req, res, next) => {
