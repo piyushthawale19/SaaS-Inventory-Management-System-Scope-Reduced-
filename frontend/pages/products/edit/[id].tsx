@@ -13,8 +13,8 @@ export default function EditProduct() {
   const [formData, setFormData] = useState({
     name: "",
     sku: "",
-    quantity: 0,
-    price: 0,
+    quantity: "",
+    price: "",
   });
   
   const [initialLoading, setInitialLoading] = useState(true);
@@ -30,8 +30,8 @@ export default function EditProduct() {
         setFormData({
           name: data.name,
           sku: data.sku,
-          quantity: data.quantity,
-          price: data.price,
+          quantity: String(data.quantity),
+          price: String(data.price),
         });
       } catch (err: any) {
         setError("Failed to load product details.");
@@ -44,11 +44,7 @@ export default function EditProduct() {
   }, [id]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type } = e.target;
-    setFormData(prev => ({ 
-      ...prev, 
-      [name]: type === "number" ? parseFloat(value) : value 
-    }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,7 +53,12 @@ export default function EditProduct() {
     setError("");
 
     try {
-      await api.put(`/products/${id}`, formData);
+      await api.put(`/products/${id}`, {
+        name: formData.name,
+        sku: formData.sku,
+        quantity: parseInt(formData.quantity) || 0,
+        price: parseFloat(formData.price) || 0,
+      });
       router.push("/products");
     } catch (err: any) {
       setError(err.response?.data?.message || "Failed to update product");

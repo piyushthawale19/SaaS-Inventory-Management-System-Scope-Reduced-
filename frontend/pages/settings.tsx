@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import api from "@/lib/axios";
 
 export default function SettingsPage() {
-  const [threshold, setThreshold] = useState(10);
+  const [threshold, setThreshold] = useState("10");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -16,7 +16,7 @@ export default function SettingsPage() {
       try {
         const { data } = await api.get("/settings");
         if (data && data.lowStockThreshold) {
-          setThreshold(data.lowStockThreshold);
+          setThreshold(String(data.lowStockThreshold));
         }
       } catch (err) {
         console.error("Failed to fetch settings", err);
@@ -33,7 +33,7 @@ export default function SettingsPage() {
     setError("");
 
     try {
-      await api.put("/settings", { lowStockThreshold: threshold });
+      await api.put("/settings", { lowStockThreshold: parseInt(threshold) || 10 });
       setSuccess(true);
       
       // Hide success message after 3 seconds
@@ -78,7 +78,7 @@ export default function SettingsPage() {
               min="1"
               required
               value={threshold}
-              onChange={(e) => setThreshold(parseInt(e.target.value, 10))}
+              onChange={(e) => setThreshold(e.target.value)}
               placeholder="10"
             />
             <p className="mt-1 text-xs text-gray-500">

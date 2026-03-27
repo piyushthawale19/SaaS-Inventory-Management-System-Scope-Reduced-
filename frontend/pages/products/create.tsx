@@ -11,18 +11,14 @@ export default function CreateProduct() {
   const [formData, setFormData] = useState({
     name: "",
     sku: "",
-    quantity: 0,
-    price: 0,
+    quantity: "",
+    price: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type } = e.target;
-    setFormData(prev => ({ 
-      ...prev, 
-      [name]: type === "number" ? parseFloat(value) : value 
-    }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,7 +27,12 @@ export default function CreateProduct() {
     setError("");
 
     try {
-      await api.post("/products", formData);
+      await api.post("/products", {
+        name: formData.name,
+        sku: formData.sku,
+        quantity: parseInt(formData.quantity) || 0,
+        price: parseFloat(formData.price) || 0,
+      });
       router.push("/products");
     } catch (err: any) {
       setError(err.response?.data?.message || "Failed to create product");
