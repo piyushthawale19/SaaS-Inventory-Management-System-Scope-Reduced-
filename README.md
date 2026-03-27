@@ -105,8 +105,8 @@ Organization 1──1 Settings
 
 | Method   | Endpoint                   | Description                    | Auth Required |
 |----------|----------------------------|--------------------------------|:-------------:|
-| `POST`   | `/api/auth/signup`         | Register a new user & org      | ❌            |
-| `POST`   | `/api/auth/login`          | Login and receive JWT token    | ❌            |
+| `POST`   | `/api/auth/signup`         | Register a new user & org      | ✅            |
+| `POST`   | `/api/auth/login`          | Login and receive JWT token    | ✅            |
 | `GET`    | `/api/dashboard`           | Fetch dashboard stats          | ✅            |
 | `GET`    | `/api/products`            | List all products              | ✅            |
 | `POST`   | `/api/products`            | Create a new product           | ✅            |
@@ -114,7 +114,7 @@ Organization 1──1 Settings
 | `DELETE` | `/api/products/:id`        | Delete a product               | ✅            |
 | `GET`    | `/api/settings`            | Get organization settings      | ✅            |
 | `PUT`    | `/api/settings`            | Update organization settings   | ✅            |
-| `GET`    | `/health`                  | Health check                   | ❌            |
+| `GET`    | `/health`                  | Health check                   | ✅            |
 
 ---
 
